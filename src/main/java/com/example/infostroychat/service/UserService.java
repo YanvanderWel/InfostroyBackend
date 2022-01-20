@@ -2,7 +2,6 @@ package com.example.infostroychat.service;
 
 import com.example.infostroychat.domain.User;
 import com.example.infostroychat.repository.UserRepository;
-import org.apache.juli.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +46,10 @@ public class UserService {
         return false;
     }
 
-    public Optional<User> changeUserHandPosition(User user) {
+    public void changeUserHandPosition(User user) {
         Optional<User> userDB = userRepository.findByName(user.getName());
-        if (userDB.isPresent()) {
-            userDB.ifPresent(u -> u.setHandRaised(!u.isHandRaised()));
-            LOG.info(userDB.toString());
+        userDB.ifPresent(value -> value.setHandRaised(!value.isHandRaised()));
 
-            return userDB;
-        }
-
-        return Optional.empty();
     }
 
 }

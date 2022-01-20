@@ -1,7 +1,6 @@
 package com.example.infostroychat.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import com.example.infostroychat.domain.User;
 import com.example.infostroychat.exception.SuchNameAlreadyExistsException;
@@ -30,7 +29,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping("new")
     @MessageMapping("/new")
     @SendTo("/topic/chat")
     public ResponseEntity<?> createNewUser(@RequestBody User user) throws SuchNameAlreadyExistsException {
@@ -53,18 +51,21 @@ public class UserController {
         }
     }
 
-    @PostMapping("del")
-    public void deleteNewUser(@RequestBody User user) throws SuchNameAlreadyExistsException {
+    @MessageMapping("/del")
+    @SendTo("/topic/logout")
+    @Transactional
+    public List<User> deleteNewUser(@RequestBody User user) throws SuchNameAlreadyExistsException {
 
         userService.deleteUser(user);
+        return userService.getAllUsers();
     }
 
-//    @PostMapping("changeHandPosition")
-    @MessageMapping("changeHandPosition")
+    @MessageMapping("/changeHandPosition")
     @SendTo("/topic/hand")
-    public User changeUserHandPosition(@RequestBody User user) throws SuchNameAlreadyExistsException {
+    public List<User> changeUserHandPosition(@RequestBody User user) {
 
-        return userService.changeUserHandPosition(user).orElse(null);
+        userService.changeUserHandPosition(user);
+        return userService.getAllUsers();
 
     }
 
