@@ -60,7 +60,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @MessageMapping("/changeHandPosition")
+    @MessageMapping("changeHandPosition")
     @SendTo("/topic/hand")
     public List<User> changeUserHandPosition(@RequestBody User user) {
 
