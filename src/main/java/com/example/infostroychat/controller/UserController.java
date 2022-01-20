@@ -30,7 +30,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping("new")
     @MessageMapping("/new")
     @SendTo("/topic/chat")
     public ResponseEntity<?> createNewUser(@RequestBody User user) throws SuchNameAlreadyExistsException {
