@@ -59,7 +59,6 @@ public class UserController {
         userService.deleteUser(user);
     }
 
-//    @PostMapping("changeHandPosition")
     @MessageMapping("changeHandPosition")
     @SendTo("/topic/hand")
     public User changeUserHandPosition(@RequestBody User user) throws SuchNameAlreadyExistsException {
