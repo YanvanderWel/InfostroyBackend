@@ -140,11 +140,11 @@ spring.datasource.password=
 server.port=8080
 ````
 
-I use PostgreSQL as DBMS. You can change it opening 'application.properties' and 
-writing another port in 'spring.datasource.url'. 
+I use PostgreSQL as DBMS. You can change it opening `application.properties` and 
+writing another port in `spring.datasource.url`. 
 Be sure you include a username and a password concerning to your DB. By default, I enable auto dropping and then
 creating my DB, but you can change it
-specifying ddl that you need in 'spring.jpa.hibernate.ddl-auto' field.
+specifying ddl that you need in `spring.jpa.hibernate.ddl-auto` field.
 
 ## Enabling Spring Boot CORS support
 Additionally, you need to configure Spring Boot backend
