@@ -2,7 +2,7 @@
 
 ## Description
 
-This is backend side of site and here we handle 
+This is backend side of site and here I handle 
 all requests from frontend side with the help of Spring framework.
 
 ## Installation
