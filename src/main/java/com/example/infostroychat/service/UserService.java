@@ -45,8 +45,10 @@ public class UserService {
 
     public void changeUserHandPosition(User user) {
         Optional<User> userDB = userRepository.findByName(user.getName());
-        userDB.ifPresent(value -> value.setHandRaised(!value.isHandRaised()));
-
+        userDB.ifPresent(value -> {
+            value.setHandRaised(!value.isHandRaised());
+            userRepository.save(userDB.get());
+        });
     }
 
 }
